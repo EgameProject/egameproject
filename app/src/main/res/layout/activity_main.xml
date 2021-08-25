@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/select1Btn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/select1_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/select2Btn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginLeft="26dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/select2_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/select1Btn" />
+
+    <Button
+        android:id="@+id/select3Btn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginLeft="26dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/select3_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/select2Btn" />
+
+    <Button
+        android:id="@+id/select4Btn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginLeft="26dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/select4_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/select3Btn" />
+
+    <Button
+        android:id="@+id/select5Btn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginLeft="26dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/select5_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/select4Btn" />
+
+    <ImageView
+        android:id="@+id/playerPosition1Image"
+        android:layout_width="75dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/select1Btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/civil" />
+
+    <ImageView
+        android:id="@+id/playerPosition2Image"
+        android:layout_width="75dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/select2Btn"
+        app:layout_constraintStart_toEndOf="@+id/playerPosition1Image"
+        app:srcCompat="@drawable/civil" />
+
+    <ImageView
+        android:id="@+id/playerPosition3Image"
+        android:layout_width="75dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/select3Btn"
+        app:layout_constraintStart_toEndOf="@+id/playerPosition2Image"
+        app:srcCompat="@drawable/civil" />
+
+    <ImageView
+        android:id="@+id/playerPosition4Image"
+        android:layout_width="75dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/select4Btn"
+        app:layout_constraintStart_toEndOf="@+id/playerPosition3Image"
+        app:srcCompat="@drawable/civil" />
+
+    <ImageView
+        android:id="@+id/playerPosition5Image"
+        android:layout_width="75dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/select5Btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/playerPosition4Image"
+        app:srcCompat="@drawable/civil" />
+
+    <ImageView
+        android:id="@+id/playerBattleCardImage"
+        android:layout_width="102dp"
+        android:layout_height="146dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="294dp" />
+
+    <ImageView
+        android:id="@+id/cpuBattleCardImage"
+        android:layout_width="100dp"
+        android:layout_height="151dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/playerBattleCardImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

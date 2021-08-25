@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Egame</string>
+    <string name="select1_text">1</string>
+    <string name="select2_text">2</string>
+    <string name="select3_text">3</string>
+    <string name="select4_text">4</string>
+    <string name="select5_text">5</string>
+</resources>
