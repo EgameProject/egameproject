@@ -5,4 +5,8 @@
     <string name="select3_text">3</string>
     <string name="select4_text">4</string>
     <string name="select5_text">5</string>
+    <string name="playerWinCount_text">勝利</string>
+    <string name="cpuWinCount_text">勝利</string>
+    <string name="next_text">次へ</string>
+    <string name="round_text">ラウンド</string>
 </resources>
