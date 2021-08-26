@@ -5,17 +5,22 @@ import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    private val king = "KING"
-    private val joker = "JOKER"
+    private var king :String= "KING"
+    private var joker :String = "JOKER"
     private var playerPosition: String = king
-    private var cpuPosition1: String = ""
-    private var cpuPosition2: String = ""
-    private var cpuPosition3: String = ""
-    private var cpuPosition4: String = ""
-    private var cpuPosition5: String = ""
+    private var cpuPosition1: String? = ""
+    private var cpuPosition2: String? = ""
+    private var cpuPosition3: String? = ""
+    private var cpuPosition4: String? = ""
+    private var cpuPosition5: String? = ""
     private var playerNumber = 0
     private var cpuNumber = 0
-
+    private var selectPlayerCard = ""
+    private var selectCpuCard = ""
+    private var draw : Boolean = false
+    private var answered: Boolean = false
+    private var roundLiset: Boolean = false
+    private var roundCount = 1
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,28 +28,43 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         select1Btn.setOnClickListener {
-            show(1)
-            //judge()
+            if(answered) {
+                showPlayerCard(1)
+                judge(selectPlayerCard, selectCpuCard)
+            }
         }
 
         select2Btn.setOnClickListener {
-            show(2)
-            //judge()
+            if(answered) {
+                showPlayerCard(2)
+                judge(selectPlayerCard, selectCpuCard)
+            }
         }
 
         select3Btn.setOnClickListener {
-            show(3)
-            //judge()
+            if(answered) {
+                showPlayerCard(3)
+                judge(selectPlayerCard, selectCpuCard)
+            }
         }
 
         select4Btn.setOnClickListener {
-            show(4)
-            //judge()
+            if(answered) {
+                showPlayerCard(4)
+                judge(selectPlayerCard, selectCpuCard)
+            }
         }
 
         select5Btn.setOnClickListener {
-            show(5)
-            //judge()
+            if(answered) {
+                showPlayerCard(5)
+                judge(selectPlayerCard, selectCpuCard)
+            }
+        }
+        nextBtn.setOnClickListener{
+            if(roundLiset){
+                setNextRound(playerPosition)
+            }
         }
     }
 
@@ -90,22 +110,28 @@ class MainActivity : AppCompatActivity() {
                 5 -> cpuPosition5 = "king"
             }
         }
+        answered = true
+
     }
 
-    fun show(selectNumber : Int){
-
+    fun showPlayerCard(selectNumber : Int){
+        answered = false
         deletePlayerCard(selectNumber)
 
         if(selectNumber == playerNumber){
             if(playerPosition == king){
                 playerBattleCardImage.setImageResource(R.drawable.king)
+                selectPlayerCard = king
             }
             else{
                 playerBattleCardImage.setImageResource(R.drawable.joker)
+                selectPlayerCard = joker
+
             }
         }
         else{
             playerBattleCardImage.setImageResource(R.drawable.civil)
+
         }
 
         showCpuCard()
@@ -114,21 +140,33 @@ class MainActivity : AppCompatActivity() {
 
     fun showCpuCard(){
         var cpuSelectNumber = 0
-        cpuSelectNumber = (1..5).random()
+        outer@ while(true) {
+            cpuSelectNumber = (1..5).random()
+            when (cpuSelectNumber) {
+                1 -> if (cpuPosition1 != null) break@outer
+                2 -> if (cpuPosition2 != null) break@outer
+                3 -> if (cpuPosition3 != null) break@outer
+                4 -> if (cpuPosition4 != null) break@outer
+                5 -> if (cpuPosition5 != null) break@outer
+            }
+        }
+        deleteCPUCard(cpuSelectNumber)
 
         if(cpuSelectNumber == cpuNumber && playerPosition == king){
             cpuBattleCardImage.setImageResource(R.drawable.joker)
+            selectCpuCard = joker
         }
         else if(cpuSelectNumber == cpuNumber && playerPosition == joker){
             cpuBattleCardImage.setImageResource(R.drawable.king)
+            selectCpuCard = king
         }
         else{
             cpuBattleCardImage.setImageResource(R.drawable.civil)
         }
     }
 
-    fun deletePlayerCard(selectNumber : Int){
-        when(selectNumber) {
+    fun deletePlayerCard(selectNumber : Int) {
+        when (selectNumber) {
             1 -> playerPosition1Image.setImageDrawable(null)
             2 -> playerPosition2Image.setImageDrawable(null)
             3 -> playerPosition3Image.setImageDrawable(null)
@@ -136,10 +174,58 @@ class MainActivity : AppCompatActivity() {
             5 -> playerPosition5Image.setImageDrawable(null)
         }
     }
+    fun deleteCPUCard(cpuSelectNumber : Int){
+        when(cpuSelectNumber) {
+            1 -> cpuPosition1 = null
+            2 -> cpuPosition2 = null
+            3 -> cpuPosition3 = null
+            4 -> cpuPosition4 = null
+            5 -> cpuPosition5 = null
+        }
+    }
 
 
+    fun judge(selectPlayerCard : String, selectCpuCard: String){
+        var playerWinCount  = 0
+        var cpuWinCount = 0
+        if(playerPosition == king && selectPlayerCard == king && selectCpuCard == joker){
+            cpuWinCount++
+            cpuWinCountText.text = getString(R.string.cpuWinCount_text) + cpuWinCount
+        } else if(playerPosition == king && selectPlayerCard == king && selectCpuCard != joker){
+            playerWinCount++
+            playerWinCountText.text = getString(R.string.playerWinCount_text) + playerWinCount
+        } else if(playerPosition == king && selectPlayerCard != king && selectCpuCard == joker){
+            playerWinCount++
+            playerWinCountText.text = getString(R.string.playerWinCount_text) + playerWinCount
+        } else if(playerPosition == joker && selectPlayerCard == joker && selectCpuCard == king){
+            playerWinCount++
+            playerWinCountText.text = getString(R.string.playerWinCount_text) + playerWinCount
+        } else if(playerPosition == joker && selectPlayerCard == joker && selectCpuCard != king){
+            cpuWinCount++
+            cpuWinCountText.text = getString(R.string.cpuWinCount_text) + cpuWinCount
+        } else if(playerPosition == joker && selectPlayerCard != joker && selectCpuCard == king){
+            cpuWinCount++
+            cpuWinCountText.text = getString(R.string.cpuWinCount_text) + cpuWinCount
+        }else{
+            draw = true
+        }
+        if(playerWinCount ==2 || cpuWinCount == 2 ){
+            //画面遷移
+        }else{
+            roundLiset = true
+            draw = false
+        }
 
-
+    }
+    fun setNextRound(playerPosition : String){
+        //thisつけたらplayerPositionのval can'tのエラー消えた
+        if(playerPosition == king) this.playerPosition = joker
+        else this.playerPosition = king
+        roundCount++
+        roundText.text = getString(R.string.round_text) + roundCount
+        setCard()
+        roundLiset = false
+    }
 
 
 }
