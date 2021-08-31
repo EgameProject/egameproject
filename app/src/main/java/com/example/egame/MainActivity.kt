@@ -28,35 +28,35 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         select1Btn.setOnClickListener {
-            if(answered) {
+            if(answered || draw) {
                 showPlayerCard(1)
                 judge(selectPlayerCard, selectCpuCard)
             }
         }
 
         select2Btn.setOnClickListener {
-            if(answered) {
+            if(answered || draw) {
                 showPlayerCard(2)
                 judge(selectPlayerCard, selectCpuCard)
             }
         }
 
         select3Btn.setOnClickListener {
-            if(answered) {
+            if(answered || draw) {
                 showPlayerCard(3)
                 judge(selectPlayerCard, selectCpuCard)
             }
         }
 
         select4Btn.setOnClickListener {
-            if(answered) {
+            if(answered || draw) {
                 showPlayerCard(4)
                 judge(selectPlayerCard, selectCpuCard)
             }
         }
 
         select5Btn.setOnClickListener {
-            if(answered) {
+            if(answered || draw) {
                 showPlayerCard(5)
                 judge(selectPlayerCard, selectCpuCard)
             }
