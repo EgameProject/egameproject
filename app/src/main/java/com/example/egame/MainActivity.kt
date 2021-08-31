@@ -223,6 +223,12 @@ class MainActivity : AppCompatActivity() {
         else this.playerPosition = king
         roundCount++
         roundText.text = getString(R.string.round_text) + roundCount
+        playerPosition1Image.setImageResource(R.drawable.civil)
+        playerPosition2Image.setImageResource(R.drawable.civil)
+        playerPosition3Image.setImageResource(R.drawable.civil)
+        playerPosition4Image.setImageResource(R.drawable.civil)
+        playerPosition5Image.setImageResource(R.drawable.civil)
+
         setCard()
         roundLiset = false
 
