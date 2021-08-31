@@ -21,6 +21,8 @@ class MainActivity : AppCompatActivity() {
     private var answered: Boolean = false
     private var roundLiset: Boolean = false
     private var roundCount = 1
+    private var playerWinCount  = 0
+    private var cpuWinCount = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -186,8 +188,6 @@ class MainActivity : AppCompatActivity() {
 
 
     fun judge(selectPlayerCard : String, selectCpuCard: String){
-        var playerWinCount  = 0
-        var cpuWinCount = 0
         if(playerPosition == king && selectPlayerCard == king && selectCpuCard == joker){
             cpuWinCount++
             cpuWinCountText.text = getString(R.string.cpuWinCount_text) + cpuWinCount
@@ -225,6 +225,7 @@ class MainActivity : AppCompatActivity() {
         roundText.text = getString(R.string.round_text) + roundCount
         setCard()
         roundLiset = false
+
     }
 
 
