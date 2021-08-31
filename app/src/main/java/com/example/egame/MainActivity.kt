@@ -191,27 +191,33 @@ class MainActivity : AppCompatActivity() {
         if(playerPosition == king && selectPlayerCard == king && selectCpuCard == joker){
             cpuWinCount++
             cpuWinCountText.text = getString(R.string.cpuWinCount_text) + cpuWinCount
+            draw = false
         } else if(playerPosition == king && selectPlayerCard == king && selectCpuCard != joker){
             playerWinCount++
             playerWinCountText.text = getString(R.string.playerWinCount_text) + playerWinCount
+            draw = false
         } else if(playerPosition == king && selectPlayerCard != king && selectCpuCard == joker){
             playerWinCount++
             playerWinCountText.text = getString(R.string.playerWinCount_text) + playerWinCount
+            draw = false
         } else if(playerPosition == joker && selectPlayerCard == joker && selectCpuCard == king){
             playerWinCount++
             playerWinCountText.text = getString(R.string.playerWinCount_text) + playerWinCount
+            draw = false
         } else if(playerPosition == joker && selectPlayerCard == joker && selectCpuCard != king){
             cpuWinCount++
             cpuWinCountText.text = getString(R.string.cpuWinCount_text) + cpuWinCount
+            draw = false
         } else if(playerPosition == joker && selectPlayerCard != joker && selectCpuCard == king){
             cpuWinCount++
             cpuWinCountText.text = getString(R.string.cpuWinCount_text) + cpuWinCount
+            draw = false
         }else{
             draw = true
         }
         if(playerWinCount ==2 || cpuWinCount == 2 ){
             //画面遷移
-        }else{
+        }else if(!draw){
             roundLiset = true
             draw = false
         }
