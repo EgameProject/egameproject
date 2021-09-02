@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Egame">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"></activity>//ここの2行を入れ替えるとスタート画面が変えられる
+        <activity android:name=".StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
