@@ -235,6 +235,9 @@ class MainActivity : AppCompatActivity() {
         playerPosition4Image.setImageResource(R.drawable.civil)
         playerPosition5Image.setImageResource(R.drawable.civil)
 
+        playerBattleCardImage.setImageDrawable(null)
+        cpuBattleCardImage.setImageDrawable(null)
+
         setCard()
         roundLiset = false
 
