@@ -9,4 +9,5 @@
     <string name="cpuWinCount_text">勝利</string>
     <string name="next_text">次へ</string>
     <string name="round_text">ラウンド</string>
+    <string name="position_text" />
 </resources>
