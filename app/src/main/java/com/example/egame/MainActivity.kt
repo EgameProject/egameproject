@@ -1,13 +1,18 @@
 package com.example.egame
 
-import androidx.appcompat.app.AppCompatActivity
+import android.nfc.NfcAdapter.EXTRA_DATA
 import android.os.Bundle
+import android.preference.PreferenceManager
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_start.*
 
 class MainActivity : AppCompatActivity() {
+    val EXTRA_DATA = "com.example.testactivitytrasdata.DATA"
     private var king :String= "KING"
     private var joker :String = "JOKER"
-    private var playerPosition: String = king
+    private var playerPosition: String? = ""
     private var cpuPosition1: String? = ""
     private var cpuPosition2: String? = ""
     private var cpuPosition3: String? = ""
@@ -20,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     private var draw : Boolean = false
     private var answered: Boolean = false
     private var roundLiset: Boolean = false
+    private var start : Boolean = true
     private var roundCount = 1
     private var playerWinCount  = 0
     private var cpuWinCount = 0
@@ -72,7 +78,25 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        setCard()
+        if(start) {
+
+            PreferenceManager.getDefaultSharedPreferences(this).apply {
+                val position = getString("position", "")
+                var tag = "Egame"
+                Log.d(tag, "position:" + position)
+                start = intent.getBooleanExtra(EXTRA_DATA, true)
+                //start = startString.toBoolean()
+                Log.d(tag, "start:" + start)
+                if (start) {
+                    playerPosition = position
+                    start = false
+                    setCard()
+                }
+
+
+            }
+        }
+
 
     }
 
@@ -223,7 +247,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-    fun setNextRound(playerPosition : String){
+    fun setNextRound(playerPosition : String?){
         //thisつけたらplayerPositionのval can'tのエラー消えた
         if(playerPosition == king) this.playerPosition = joker
         else this.playerPosition = king

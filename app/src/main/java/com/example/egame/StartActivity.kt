@@ -1,14 +1,19 @@
 package com.example.egame
 
+import android.nfc.NfcAdapter.EXTRA_DATA
+
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_main.*
+import android.preference.PreferenceManager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
 import kotlinx.android.synthetic.main.activity_start.*
 
 class StartActivity : AppCompatActivity() {
     private var positionNumber = 0
     var ready : Boolean = false
+    var start : Boolean = false
+    var startString : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,9 +22,33 @@ class StartActivity : AppCompatActivity() {
         nextMainBtn.setOnClickListener {
             determinePosition()
             if (ready) {
-                val intent = Intent(this, MainActivity::class.java)
+                /*val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
+                 */
+                PreferenceManager.getDefaultSharedPreferences(this).apply{
+                     start = getBoolean("start", true)
+
+
+                }
+                /*
+                if(start == true){
+                    startString = "true"
+                }else{
+                    startString = "false"
+                }
+                */
+
+                intent = Intent(this, MainActivity::class.java)
+                intent.putExtra("EXTRA_DATA", start)
+                startActivity(intent)
+                PreferenceManager.getDefaultSharedPreferences(this).apply {
+                    val editor = this.edit()
+                    editor.putBoolean("start", false)
+                        .apply()
+                }
+
             }
+            finish()
         }
     }
     fun determinePosition(){
@@ -34,8 +63,21 @@ class StartActivity : AppCompatActivity() {
             positionImage.setImageResource(R.drawable.joker)
             positionText.text = "JOKER"
         }
+        saveData()
+
 
         ready = true
+    }
+
+    fun saveData(){
+        val pref = PreferenceManager.getDefaultSharedPreferences(this)
+        val editor = pref.edit()
+        editor.putString("position", positionText.text.toString())
+            .putBoolean("start",true)
+            .apply()
+
+
+
     }
 
 }
