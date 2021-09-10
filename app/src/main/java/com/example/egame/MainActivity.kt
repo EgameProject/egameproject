@@ -1,5 +1,6 @@
 package com.example.egame
 
+import android.content.Intent
 import android.nfc.NfcAdapter.EXTRA_DATA
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -240,7 +241,9 @@ class MainActivity : AppCompatActivity() {
             draw = true
         }
         if(playerWinCount ==2 || cpuWinCount == 2 ){
-            //画面遷移
+            val intent2 = Intent(this, ResultActivity::class.java)
+            intent2.putExtra("EXTRA_DATA", playerWinCount)
+            startActivity(intent2)
         }else if(!draw){
             roundLiset = true
             draw = false

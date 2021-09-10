@@ -38,7 +38,7 @@ class StartActivity : AppCompatActivity() {
                 }
                 */
 
-                intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("EXTRA_DATA", start)
                 startActivity(intent)
                 PreferenceManager.getDefaultSharedPreferences(this).apply {
