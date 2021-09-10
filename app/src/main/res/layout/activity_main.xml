@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/design_default_color_error"
     tools:context=".MainActivity">
 
     <Button
@@ -147,6 +148,7 @@
         android:layout_marginRight="64dp"
         android:text="@string/cpuWinCount_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/cpuBattleCardImage"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -159,6 +161,7 @@
         android:layout_marginBottom="32dp"
         android:text="@string/playerWinCount_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/playerPosition5Image"
         app:layout_constraintStart_toEndOf="@+id/playerBattleCardImage" />
 
@@ -183,6 +186,7 @@
         android:layout_marginBottom="16dp"
         android:text="@string/round_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/cpuBattleCardImage"
         app:layout_constraintEnd_toStartOf="@+id/nextBtn"
         app:layout_constraintTop_toTopOf="parent" />
