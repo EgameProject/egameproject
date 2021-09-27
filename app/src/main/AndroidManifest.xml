@@ -9,8 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Egame">
-        <activity android:name=".ResultActivity"></activity>
-        <activity android:name=".MainActivity" />
         <activity android:name=".StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,6 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ResultActivity"  android:label="Egame" ></activity>
+        <activity android:name=".MainActivity"  android:label="Egame"></activity>
     </application>
 
 </manifest>
