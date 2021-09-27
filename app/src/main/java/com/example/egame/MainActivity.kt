@@ -9,8 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_start.*
 
+import kotlinx.coroutines.*
+
+import java.lang.Thread.sleep
+import kotlin.concurrent.thread
+
 class MainActivity : AppCompatActivity() {
-    val EXTRA_DATA = "com.example.testactivitytrasdata.DATA"
     private var king :String= "KING"
     private var joker :String = "JOKER"
     private var playerPosition: String? = ""
@@ -30,6 +34,7 @@ class MainActivity : AppCompatActivity() {
     private var roundCount = 1
     private var playerWinCount  = 0
     private var cpuWinCount = 0
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,6 +80,9 @@ class MainActivity : AppCompatActivity() {
                 setNextRound(playerPosition)
             }
         }
+
+
+
     }
 
     override fun onResume() {
@@ -240,10 +248,37 @@ class MainActivity : AppCompatActivity() {
         }else{
             draw = true
         }
-        if(playerWinCount ==2 || cpuWinCount == 2 ){
-            val intent2 = Intent(this, ResultActivity::class.java)
-            intent2.putExtra("EXTRA_DATA", playerWinCount)
-            startActivity(intent2)
+        if(playerWinCount == 2 || cpuWinCount == 2 ){
+            /*intent = Intent(this, ResultActivity::class.java)
+            intent.putExtra("playerWinCount", playerWinCount)
+            intent.putExtra("playerPosition", playerPosition)
+            startActivity(intent)
+            var tag = "Egame"
+            Log.d(tag, "position:" + 11111111111111111)*/
+
+            GlobalScope.launch() {
+               val text = GlobalScope.async {
+                    sleep(2000)
+                    if(playerWinCount == 2) "WIN"
+                    else "LOSE"
+                }
+                resultShowText.text = text.await().toString()
+                sleep(500)
+                Log.d("egame", "resultShowText:" + resultShowText.text)
+                finish()
+            }
+
+/*
+            val sp = getPreferences(MODE_PRIVATE)
+            sp.edit().clear().commit()
+
+*/
+            Log.d("egameeeeeeeeeee", "resultShowText:" + "finish前aaaaaaaaaaaaaaaaaaaaaaa")
+
+
+
+
+
         }else if(!draw){
             roundLiset = true
             draw = false
